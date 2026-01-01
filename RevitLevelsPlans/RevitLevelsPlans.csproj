@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32B93A6D-0BF8-4B41-9B53-9BC6DE6686B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RevitLevelsPlans</RootNamespace>
+    <AssemblyName>RevitLevelsPlans</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Assignment 4\Command.cs" />
+    <Compile Include="Assignment 4\SelectionFilters.cs" />
+    <Compile Include="Assignment3\Commands\ActivateLevelPlanCommand.cs" />
+    <Compile Include="Assignment3\UI\ActivateLevelPlanWindow.xaml.cs">
+      <DependentUpon>ActivateLevelPlanWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment2\Commands\ActivateLevelPlanCommand.cs" />
+    <Compile Include="Assignment2\UI\ActivateLevelPlanWindow.xaml.cs">
+      <DependentUpon>ActivateLevelPlanWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment1\Models\LevelPlanRow.cs" />
+    <Compile Include="Assignment1\commands\ListLevelsAndPlansCommand.cs" />
+    <Compile Include="Assignment4\Commands\ShowWallPropertiesCommand.cs" />
+    <Compile Include="Assignment4\Model\WallPropertyModel.cs" />
+    <Compile Include="Assignment4\UI\WallPropertiesWindow.xaml.cs">
+      <DependentUpon>WallPropertiesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment4\ViewModel\WallPropertiesViewModel.cs" />
+    <Compile Include="Assignment6\Commands\ActivatePlanCommand.cs" />
+    <Compile Include="Assignment6\Commands\ShowRoomListCommand.cs" />
+    <Compile Include="Assignment6\Models\LevelPlanItem.cs" />
+    <Compile Include="Assignment6\Models\RoomInfoModel.cs" />
+    <Compile Include="Assignment6\UI\LevelPlanPickerWindow.xaml.cs">
+      <DependentUpon>LevelPlanPickerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment6\UI\RoomListWindow.xaml.cs">
+      <DependentUpon>RoomListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment6\ViewModel\LevelPlanPickerViewModel.cs" />
+    <Compile Include="Assignment6\ViewModel\RoomListViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assignment1\Views\LevelsPlansWindow.xaml.cs">
+      <DependentUpon>LevelsPlansWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Assignment3\UI\ActivateLevelPlanWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assignment2\UI\ActivateLevelPlanWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment1\Views\LevelsPlansWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment4\UI\WallPropertiesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment6\UI\LevelPlanPickerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment6\UI\RoomListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

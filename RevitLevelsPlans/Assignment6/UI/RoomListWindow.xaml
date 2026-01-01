@@ -1,0 +1,33 @@
+﻿<Window x:Class="RevitLevelsPlans.Assignment6.UI.RoomListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Room List"
+        Height="420"
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="{Binding ViewName, StringFormat=Rooms in: {0}}"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,8"/>
+
+        <DataGrid ItemsSource="{Binding Rooms}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="1.2*"/>
+                <DataGridTextColumn Header="Name"   Binding="{Binding Name}"   Width="2.2*"/>
+                <DataGridTextColumn Header="Level"  Binding="{Binding Level}"  Width="1.6*"/>
+                <DataGridTextColumn Header="Area"   Binding="{Binding Area}"   Width="1.2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
