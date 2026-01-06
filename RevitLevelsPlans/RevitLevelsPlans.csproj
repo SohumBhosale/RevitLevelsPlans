@@ -58,8 +58,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Assignment 4\Command.cs" />
-    <Compile Include="Assignment 4\SelectionFilters.cs" />
+    <Compile Include="Assignment 5_4\Command.cs" />
+    <Compile Include="Assignment 5_4\SelectionFilters.cs" />
+    <Compile Include="Assignment10\Command\ShowLevelwiseWallsCommand.cs" />
+    <Compile Include="Assignment10\Models\LevelNodeModel.cs" />
+    <Compile Include="Assignment10\Models\WallInfoModel.cs" />
+    <Compile Include="Assignment10\UI\LevelwiseWallsWindow.xaml.cs">
+      <DependentUpon>LevelwiseWallsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment10\ViewModels\LevelWallsViewModel.cs" />
+    <Compile Include="Assignment11\Commands\ShowWallOpeningsCommand.cs" />
+    <Compile Include="Assignment11\Model\OpeningInfoModel.cs" />
+    <Compile Include="Assignment11\UI\WallOpeningsWindow.xaml.cs">
+      <DependentUpon>WallOpeningsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment11\ViewModels\WallOpeningsViewModel.cs" />
+    <Compile Include="Assignment12\Commands\ShowLevelwiseCountsCommand.cs" />
+    <Compile Include="Assignment12\Models\LevelCategoryCountModel.cs" />
+    <Compile Include="Assignment12\Models\LevelNodeModel12.cs" />
+    <Compile Include="Assignment12\UI\LevelwiseCountsWindow.xaml.cs">
+      <DependentUpon>LevelwiseCountsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment12\ViewModel\LevelwiseCountsViewModel.cs" />
     <Compile Include="Assignment3\Commands\ActivateLevelPlanCommand.cs" />
     <Compile Include="Assignment3\UI\ActivateLevelPlanWindow.xaml.cs">
       <DependentUpon>ActivateLevelPlanWindow.xaml</DependentUpon>
@@ -88,12 +108,44 @@
     </Compile>
     <Compile Include="Assignment6\ViewModel\LevelPlanPickerViewModel.cs" />
     <Compile Include="Assignment6\ViewModel\RoomListViewModel.cs" />
+    <Compile Include="Assignment7\Command\RoomWallsBySelectionCommand.cs" />
+    <Compile Include="Assignment7\Models\WallInRoomModel.cs" />
+    <Compile Include="Assignment7\UI\RoomWallsWindow.xaml.cs">
+      <DependentUpon>RoomWallsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment7\ViewModel\RoomWallsViewModel.cs" />
+    <Compile Include="Assignment8\Commands\ShowModelHierarchyCommand.cs" />
+    <Compile Include="Assignment8\Model\TreeNodeModel.cs" />
+    <Compile Include="Assignment8\UI\ModelHierarchyWindow.xaml.cs">
+      <DependentUpon>ModelHierarchyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment8\ViewModel\ModelHierarchyViewModel.cs" />
+    <Compile Include="Assignment9\Commands\ShowModelHierarchyCommand.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="Assignment9\Models\TreeNodeModel.cs" />
+    <Compile Include="Assignment9\UI\ModelHierarchyWindow.xaml.cs">
+      <DependentUpon>ModelHierarchyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment9\ViewModel\ModelHierarchyViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assignment1\Views\LevelsPlansWindow.xaml.cs">
       <DependentUpon>LevelsPlansWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assignment10\UI\LevelwiseWallsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment11\UI\WallOpeningsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment12\UI\LevelwiseCountsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assignment3\UI\ActivateLevelPlanWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,7 +170,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assignment7\UI\RoomWallsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment8\UI\ModelHierarchyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment9\UI\ModelHierarchyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assignment13\Commands\" />
+    <Folder Include="Assignment13\Models\" />
+    <Folder Include="Assignment13\UI\" />
+    <Folder Include="Assignment13\ViewModel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

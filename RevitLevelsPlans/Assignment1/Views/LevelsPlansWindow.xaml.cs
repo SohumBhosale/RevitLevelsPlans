@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;  // System.Windows.Window
+using System.Windows;
 
 namespace RevitLevelsPlans.UI
 {
@@ -32,5 +32,13 @@ namespace RevitLevelsPlans.UI
         }
 
         private void OnClose(object sender, RoutedEventArgs e) => Close();
+
+        private void dgLevels_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+
+
+
+        }
     }
 }

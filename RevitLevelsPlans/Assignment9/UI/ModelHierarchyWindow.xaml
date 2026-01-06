@@ -1,0 +1,43 @@
+﻿<Window x:Class="RevitLevelsPlans.Assignment9.UI.ModelHierarchyActivateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Model Hierarchy (Activate)"
+        Height="460"
+        Width="560"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <!-- Keyed hierarchical template (avoids type namespace issues) -->
+        <HierarchicalDataTemplate x:Key="NodeTemplate"
+                                  ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Name}" />
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Document ➜ Floor Plans (Double‑click a plan to activate)"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,8"/>
+
+        <TreeView x:Name="HierarchyTree"
+                  Grid.Row="1"
+                  ItemsSource="{Binding Roots}"
+                  ItemTemplate="{StaticResource NodeTemplate}"
+                  MouseDoubleClick="OnTreeItemDoubleClicked" />
+
+        <CheckBox Grid.Row="2"
+                  Content="Activate on single click"
+                  Margin="0,8,0,0"
+                  Checked="OnSingleClickChecked"
+                  Unchecked="OnSingleClickUnchecked"/>
+    </Grid>
+</Window>

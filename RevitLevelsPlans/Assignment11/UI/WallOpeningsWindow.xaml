@@ -1,0 +1,45 @@
+﻿<Window x:Class="RevitLevelsPlans.Assignment11.UI.WallOpeningsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wall Openings"
+        Height="520"
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="Wall:" FontWeight="SemiBold" Margin="0,0,6,0"/>
+            <TextBlock Text="{Binding WallId}" Margin="0,0,12,0"/>
+            <TextBlock Text="Name:" FontWeight="SemiBold" Margin="12,0,6,0"/>
+            <TextBlock Text="{Binding WallName}" Margin="0,0,12,0"/>
+            <TextBlock Text="Type:" FontWeight="SemiBold" Margin="12,0,6,0"/>
+            <TextBlock Text="{Binding WallType}" Margin="0,0,12,0"/>
+            <TextBlock Text="Level:" FontWeight="SemiBold" Margin="12,0,6,0"/>
+            <TextBlock Text="{Binding WallLevel}"/>
+        </StackPanel>
+
+        <!-- Openings grid -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Items}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"          Binding="{Binding Id}"        Width="0.9*"/>
+                <DataGridTextColumn Header="Kind"        Binding="{Binding Kind}"      Width="1.2*"/>
+                <DataGridTextColumn Header="Family"      Binding="{Binding FamilyName}" Width="1.6*"/>
+                <DataGridTextColumn Header="Type"        Binding="{Binding TypeName}"  Width="1.6*"/>
+                <DataGridTextColumn Header="Width"       Binding="{Binding Width}"     Width="1.0*"/>
+                <DataGridTextColumn Header="Height"      Binding="{Binding Height}"    Width="1.0*"/>
+                <DataGridTextColumn Header="Level"       Binding="{Binding Level}"     Width="1.2*"/>
+                <DataGridTextColumn Header="Details"     Binding="{Binding Details}"   Width="2.2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

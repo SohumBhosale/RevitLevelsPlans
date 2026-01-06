@@ -1,0 +1,56 @@
+﻿<Window x:Class="RevitLevelsPlans.Assignment10.UI.LevelwiseWallsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Levelwise Walls"
+        Height="520"
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Levels"
+                   FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Walls on selected level"
+                   FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+        <!-- Levels (TreeView) -->
+        <TreeView x:Name="LevelsTree"
+                  Grid.Row="1" Grid.Column="0"
+                  ItemsSource="{Binding Levels}"
+                  SelectedItemChanged="OnLevelSelected">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Walls}">
+                    <TextBlock Text="{Binding LevelName}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <!-- Spacer -->
+        <Grid Grid.Row="1" Grid.Column="1"/>
+
+        <!-- Walls (DataGrid for SelectedLevel.Walls) -->
+        <DataGrid Grid.Row="1" Grid.Column="2"
+                  ItemsSource="{Binding SelectedLevel.Walls}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"        Binding="{Binding Id}"        Width="1.0*"/>
+                <DataGridTextColumn Header="Name"      Binding="{Binding Name}"      Width="1.8*"/>
+                <DataGridTextColumn Header="Type"      Binding="{Binding Type}"      Width="1.8*"/>
+                <DataGridTextColumn Header="Length"    Binding="{Binding Length}"    Width="1.2*"/>
+                <DataGridTextColumn Header="Thickness" Binding="{Binding Thickness}" Width="1.2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
