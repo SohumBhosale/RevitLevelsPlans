@@ -13,7 +13,6 @@ namespace RevitLevelsPlans.Assignment13.ViewModel
         public ObservableCollection<HierarchyNode> Roots { get; } =
             new ObservableCollection<HierarchyNode>();
 
-        // Categories to display under each level
         private static readonly BuiltInCategory[] TargetCategories =
         {
             BuiltInCategory.OST_Walls,
@@ -27,7 +26,6 @@ namespace RevitLevelsPlans.Assignment13.ViewModel
 
         public LevelCategoryHierarchyViewModel(Document doc)
         {
-            // Document root
             string docTitle = string.IsNullOrWhiteSpace(doc.Title) ? doc.PathName : doc.Title;
             var root = new HierarchyNode
             {
@@ -35,7 +33,6 @@ namespace RevitLevelsPlans.Assignment13.ViewModel
                 NodeType = HierarchyNodeType.Document
             };
 
-            // Levels
             var levels = new FilteredElementCollector(doc)
                 .OfClass(typeof(Level))
                 .Cast<Level>()
@@ -43,7 +40,6 @@ namespace RevitLevelsPlans.Assignment13.ViewModel
                 .ThenBy(l => l.Name)
                 .ToList();
 
-            // For each level, add categories (with counts in display name)
             foreach (var level in levels)
             {
                 var levelNode = new HierarchyNode

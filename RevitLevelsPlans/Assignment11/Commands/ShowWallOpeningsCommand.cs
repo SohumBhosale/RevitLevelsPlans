@@ -22,7 +22,6 @@ namespace RevitLevelsPlans.Assignment11.Commands
 
             try
             {
-                // 1) Collect walls from preselection
                 var walls = new List<Wall>();
                 var selectedIds = uidoc.Selection.GetElementIds();
 
@@ -35,7 +34,6 @@ namespace RevitLevelsPlans.Assignment11.Commands
                     }
                 }
 
-                // 2) If none, prompt for multi-pick
                 if (walls.Count == 0)
                 {
                     var pickedRefs = uidoc.Selection.PickObjects(ObjectType.Element, new WallSelectionFilter(),
@@ -56,7 +54,6 @@ namespace RevitLevelsPlans.Assignment11.Commands
                     return Result.Succeeded;
                 }
 
-                // 3) Build ViewModel and show WPF
                 var vm = new WallOpeningsViewModel(doc, walls);
 
                 IntPtr hwnd = data.Application.MainWindowHandle;

@@ -1,5 +1,4 @@
 ﻿
-// RevitLevelsPlans.Assignment6.ViewModel;
 using RevitLevelsPlans.Assignment6.ViewModel;
 
 using System;
@@ -30,8 +29,7 @@ namespace RevitLevelsPlans.Assignment6.UI
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-
-            DialogResult = true; // signal selection OK to the command
+            DialogResult = true;
             Close();
         }
     }

@@ -17,7 +17,6 @@
                    Text="Levels, elevation (internal feet), and associated Floor Plan views"
                    FontWeight="Bold" Margin="0,0,0,8"/>
 
-        <!-- IMPORTANT: x:Name matches code-behind -->
         <DataGrid Grid.Row="1" x:Name="dgLevels"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"

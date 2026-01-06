@@ -4,7 +4,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using RevitLevelsPlans.Assignment6.UI;
-//using RevitLevelsPlans.Assignment6.ViewModel;
 using RevitLevelsPlans.Assignment6.ViewModel;
 
 using System;

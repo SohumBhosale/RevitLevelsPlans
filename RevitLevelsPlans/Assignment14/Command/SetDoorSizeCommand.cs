@@ -22,7 +22,6 @@ namespace RevitLevelsPlans.Assignment14.Commands
 
             try
             {
-                // 1) Gather selected doors (preselection)
                 var doors = new List<FamilyInstance>();
                 var selectedIds = uidoc.Selection.GetElementIds();
                 if (selectedIds?.Count > 0)
@@ -35,10 +34,8 @@ namespace RevitLevelsPlans.Assignment14.Commands
                     }
                 }
 
-                // 2) If none, prompt the user (single/multiple) OR use rectangle pick
                 if (doors.Count == 0)
                 {
-                    // a) Try multi-pick
                     try
                     {
                         var refs = uidoc.Selection.PickObjects(ObjectType.Element, new DoorSelectionFilter(),
@@ -49,7 +46,6 @@ namespace RevitLevelsPlans.Assignment14.Commands
                     }
                     catch (Autodesk.Revit.Exceptions.OperationCanceledException)
                     {
-                        // b) As a second option: rectangle selection
                         var rectPicked = uidoc.Selection.PickElementsByRectangle(new DoorSelectionFilter());
                         doors.AddRange(rectPicked.OfType<FamilyInstance>());
                     }
@@ -61,7 +57,6 @@ namespace RevitLevelsPlans.Assignment14.Commands
                     return Result.Succeeded;
                 }
 
-                // 3) Build VM and show resizable WPF
                 var vm = new DoorSizeViewModel(doc, doors);
 
                 IntPtr hwnd = data.Application.MainWindowHandle;

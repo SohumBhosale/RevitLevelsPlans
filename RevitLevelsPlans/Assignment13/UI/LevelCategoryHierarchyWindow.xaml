@@ -8,7 +8,6 @@
         ResizeMode="CanMinimize">
 
     <Window.Resources>
-        <!-- One template for all nodes (type-agnostic); recurses into Children -->
         <HierarchicalDataTemplate x:Key="NodeTemplate" ItemsSource="{Binding Children}">
             <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>

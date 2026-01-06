@@ -29,7 +29,6 @@ namespace RevitLevelsPlans
 
             try
             {
-                // 1) Levels (instances), ordered by elevation (feet)
                 var levels = new FilteredElementCollector(doc)
                     .OfClass(typeof(Level))
                     .WhereElementIsNotElementType()
@@ -37,19 +36,16 @@ namespace RevitLevelsPlans
                     .OrderBy(l => l.Elevation)
                     .ToList();
 
-                // 2) Floor Plan views (instances), exclude templates, keep only those with GenLevel
                 var floorPlans = new FilteredElementCollector(doc)
                     .OfClass(typeof(ViewPlan))
                     .WhereElementIsNotElementType()
                     .Cast<ViewPlan>()
                     .Where(vp => vp.ViewType == ViewType.FloorPlan && !vp.IsTemplate && vp.GenLevel != null)
-                    .Select(vp => new { vp.Name, LevelId = vp.GenLevel.Id })      // project to anonymous type
+                    .Select(vp => new { vp.Name, LevelId = vp.GenLevel.Id })
                     .ToList();
 
-                // 3) ToLookup: LevelId -> [plan names]  (LINQ-friendly, returns empty seq for missing keys)
                 var plansLookup = floorPlans.ToLookup(x => x.LevelId, x => x.Name);
 
-                // 4) Shape rows with LINQ
                 var rows = levels
                     .Select(lvl => new LevelPlanRow
                     {
@@ -59,17 +55,13 @@ namespace RevitLevelsPlans
                     })
                     .ToList();
 
-                // 5) Show WPF window
                 var window = new LevelsPlansWindow(rows);
-                //var window = new LevelPlanWindow(items);
-
-                // Set Revit main window as owner so the dialog behaves properly
 
                 var revitHwnd = uiapp.MainWindowHandle;
 
                 var helper = new WindowInteropHelper(window) { Owner = revitHwnd };
 
-                window.ShowDialog(); // modal — simplest & safest
+                window.ShowDialog();
 
 
                 return Result.Succeeded;

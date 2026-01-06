@@ -26,7 +26,6 @@ namespace RevitLevelsPlans.Assignment11.ViewModel
                 var wallName = wall.Name;
                 var wallId = wall.Id.IntegerValue;
 
-                // Find inserts hosted by this wall (doors/windows/openings/embedded)
                 var insertIds = wall.FindInserts(
                     addRectOpenings: true,
                     includeShadows: true,

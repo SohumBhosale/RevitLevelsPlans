@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-
 using Autodesk.Revit.DB;
-
 using RevitLevelsPlans.Assignment10.Models;
 
 namespace RevitLevelsPlans.Assignment10.ViewModel
@@ -30,13 +28,11 @@ namespace RevitLevelsPlans.Assignment10.ViewModel
 
         public LevelWallsViewModel(Document doc)
         {
-            // Collect all Walls (instances)
             var walls = new FilteredElementCollector(doc)
                 .OfClass(typeof(Wall))
                 .Cast<Wall>()
                 .ToList();
 
-            // Group by wall.LevelId (handle invalid or null gracefully)
             var grouped = walls
                 .GroupBy(w => w.LevelId ?? ElementId.InvalidElementId)
                 .OrderBy(g => GetLevelName(doc, g.Key));
@@ -54,14 +50,12 @@ namespace RevitLevelsPlans.Assignment10.ViewModel
                 {
                     var wt = doc.GetElement(w.GetTypeId()) as WallType;
 
-                    // Length (formatted if available)
                     string lenStr = null;
                     var lenP = w.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH);
                     lenStr = lenP?.AsValueString();
                     if (string.IsNullOrEmpty(lenStr) && lenP != null)
                         lenStr = lenP.AsDouble().ToString("0.##");
 
-                    // Thickness (WallType width param)
                     string thickStr = null;
                     var widthP = wt?.get_Parameter(BuiltInParameter.WALL_ATTR_WIDTH_PARAM);
                     thickStr = widthP?.AsValueString();
@@ -82,7 +76,6 @@ namespace RevitLevelsPlans.Assignment10.ViewModel
                 Levels.Add(levelNode);
             }
 
-            // Preselect the first level for convenience
             SelectedLevel = Levels.FirstOrDefault();
         }
 

@@ -88,7 +88,6 @@ namespace RevitLevelsPlans.Assignment4.ViewModels
                     return param.AsString() ?? "";
 
                 case StorageType.Double:
-                    // Prefer formatted value, fallback to raw double
                     var vs = param.AsValueString();
                     return !string.IsNullOrEmpty(vs) ? vs : param.AsDouble().ToString("0.######");
 

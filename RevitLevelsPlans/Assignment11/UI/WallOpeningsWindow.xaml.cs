@@ -11,7 +11,7 @@ namespace RevitLevelsPlans.Assignment11.UI
     {
         public WallOpeningsWindow()
         {
-            InitializeComponent(); // requires XAML Build Action = Page
+            InitializeComponent();
         }
 
         public WallOpeningsWindow(WallOpeningsViewModel vm, IntPtr revitMainHwnd) : this()

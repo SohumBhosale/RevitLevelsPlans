@@ -34,8 +34,6 @@ namespace RevitLevelsPlans.Assignment13.UI
 
         private void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            // Optional: if you want single-click behavior, call HandleSelection here.
-            // HandleSelection(HierarchyTree.SelectedItem as HierarchyNode);
         }
 
         private void OnNodeDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -51,7 +49,6 @@ namespace RevitLevelsPlans.Assignment13.UI
             {
                 case HierarchyNodeType.Level:
                     ActivateLevelPlan(node.LevelId);
-                    // No selection for level-only click (as per steps). You can select all categories if desired.
                     break;
 
                 case HierarchyNodeType.Category:
@@ -61,7 +58,6 @@ namespace RevitLevelsPlans.Assignment13.UI
 
                 case HierarchyNodeType.Document:
                 default:
-                    // Do nothing on document node
                     break;
             }
         }
@@ -70,7 +66,6 @@ namespace RevitLevelsPlans.Assignment13.UI
         {
             if (levelId == ElementId.InvalidElementId) return;
 
-            // Find a floor plan whose GenLevel == this level
             var viewPlan = new FilteredElementCollector(_doc)
                 .OfClass(typeof(ViewPlan))
                 .Cast<ViewPlan>()
@@ -82,17 +77,14 @@ namespace RevitLevelsPlans.Assignment13.UI
                 return;
             }
 
-            // Activate synchronously in an external command context
             _uidoc.ActiveView = viewPlan;
-
-            // Optional UX: Zoom to fit (requires UIView)
             try
             {
                 var uiViews = _uidoc.GetOpenUIViews();
                 var thisView = uiViews.FirstOrDefault(v => v.ViewId == viewPlan.Id);
                 thisView?.ZoomToFit();
             }
-            catch { /* ignore if not available */ }
+            catch { }
         }
 
         private void HighlightCategoryElementsOnLevel(ElementId levelId, BuiltInCategory? bicMaybe)
@@ -114,11 +106,8 @@ namespace RevitLevelsPlans.Assignment13.UI
                 return;
             }
 
-            // Select (highlight) them in the active view
             _uidoc.Selection.SetElementIds(ids);
 
-            // Optional: temporarily isolate them to visually emphasize
-            // NOTE: Requires a transaction.
             using (var t = new Transaction(_doc, "Temporary Isolate"))
             {
                 if (t.Start() == TransactionStatus.Started)

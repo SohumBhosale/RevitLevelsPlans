@@ -18,13 +18,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Levels"
                    FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
         <TextBlock Grid.Row="0" Grid.Column="2" Text="Walls on selected level"
                    FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
 
-        <!-- Levels (TreeView) -->
         <TreeView x:Name="LevelsTree"
                   Grid.Row="1" Grid.Column="0"
                   ItemsSource="{Binding Levels}"
@@ -36,10 +34,8 @@
             </TreeView.ItemTemplate>
         </TreeView>
 
-        <!-- Spacer -->
         <Grid Grid.Row="1" Grid.Column="1"/>
 
-        <!-- Walls (DataGrid for SelectedLevel.Walls) -->
         <DataGrid Grid.Row="1" Grid.Column="2"
                   ItemsSource="{Binding SelectedLevel.Walls}"
                   AutoGenerateColumns="False"

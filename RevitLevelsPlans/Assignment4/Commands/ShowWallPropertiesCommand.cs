@@ -21,8 +21,6 @@ namespace RevitLevelsPlans.Assignment4.Commands
             try
             {
                 Wall wall = null;
-
-                // Use preselection if exactly one element is selected; otherwise prompt
                 var selectedIds = uidoc.Selection.GetElementIds();
                 if (selectedIds.Count == 1)
                 {
@@ -47,7 +45,6 @@ namespace RevitLevelsPlans.Assignment4.Commands
 
                 var sb = new StringBuilder();
 
-                // Header info
                 sb.AppendLine($"ElementId: {wall.Id.IntegerValue}");
                 sb.AppendLine($"UniqueId: {wall.UniqueId}");
                 sb.AppendLine($"Category: {wall.Category?.Name}");
@@ -55,12 +52,10 @@ namespace RevitLevelsPlans.Assignment4.Commands
                 var wallType = doc.GetElement(wall.GetTypeId()) as WallType;
                 sb.AppendLine($"Wall Type: {wallType?.Name}");
 
-                // Base level (built-in exists across versions)
                 var baseConstraintId = wall.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT)?.AsElementId();
                 var baseLevel = (baseConstraintId != null) ? doc.GetElement(baseConstraintId) as Level : null;
                 sb.AppendLine($"Base Level: {baseLevel?.Name ?? "(none)"}");
 
-                // Top constraint robust handling
                 Level topLevel = null;
                 var topConstraintP = wall.LookupParameter("Top Constraint");
                 if (topConstraintP != null && topConstraintP.StorageType == StorageType.ElementId)
@@ -83,13 +78,11 @@ namespace RevitLevelsPlans.Assignment4.Commands
                 }
                 sb.AppendLine($"Top: {topInfo}");
 
-                // Top offset (null-safe)
                 var topOffsetStr = wall.get_Parameter(BuiltInParameter.WALL_TOP_OFFSET)?.AsValueString();
                 if (string.IsNullOrEmpty(topOffsetStr))
                     topOffsetStr = wall.get_Parameter(BuiltInParameter.WALL_TOP_OFFSET)?.AsDouble().ToString("0.######");
                 sb.AppendLine($"Top Offset: {topOffsetStr ?? "(none)"}");
 
-                // Parameters - copy to list to sort
                 sb.AppendLine();
                 sb.AppendLine("=== Parameters ===");
                 var parameters = new List<Parameter>();
@@ -140,7 +133,6 @@ namespace RevitLevelsPlans.Assignment4.Commands
         }
     }
 
-    // Correct filter signature (XYZ for second arg)
     public class WallSelectionFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem) => elem is Wall;

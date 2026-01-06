@@ -13,7 +13,6 @@ namespace RevitLevelsPlans.Assignment12.UI
         {
             InitializeComponent();
         }
-
         public LevelwiseCountsWindow(LevelwiseCountsViewModel vm, IntPtr revitMainHwnd) : this()
         {
             DataContext = vm;

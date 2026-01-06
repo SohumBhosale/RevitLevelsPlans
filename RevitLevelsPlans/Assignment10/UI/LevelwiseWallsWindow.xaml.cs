@@ -11,13 +11,12 @@ namespace RevitLevelsPlans.Assignment10.UI
     {
         public LevelwiseWallsWindow()
         {
-            InitializeComponent(); // Requires XAML Build Action = Page
+            InitializeComponent();
         }
         public LevelwiseWallsWindow(LevelWallsViewModel vm, IntPtr revitMainHwnd) : this()
         {
             DataContext = vm;
 
-            // Center/Modal over Revit
             new WindowInteropHelper(this) { Owner = revitMainHwnd };
         }
 
@@ -28,14 +27,12 @@ namespace RevitLevelsPlans.Assignment10.UI
                 var vm = DataContext as LevelWallsViewModel;
                 if (vm == null) return;
 
-                // The TreeView's SelectedItem is a LevelNodeModel
                 var levelNode = LevelsTree.SelectedItem as LevelNodeModel;
                 if (levelNode != null)
                     vm.SelectedLevel = levelNode;
             }
             catch
             {
-                // swallow event errors silently; binding will remain valid
             }
         }
     }

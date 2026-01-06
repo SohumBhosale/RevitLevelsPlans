@@ -23,7 +23,6 @@ namespace RevitLevelsPlans.Assignment7.Commands
 
             try
             {
-                // 1) Room selection (preselection else prompt)
                 Room room = null;
                 var selectedIds = uidoc.Selection.GetElementIds();
 
@@ -49,14 +48,12 @@ namespace RevitLevelsPlans.Assignment7.Commands
                     }
                 }
 
-                // 2) Validate the room is placed
                 if (room.Location == null)
                 {
                     TaskDialog.Show("Room Walls", "The selected Room is not placed.");
                     return Result.Succeeded;
                 }
 
-                // 3) Build ViewModel (collect walls)
                 var vm = new RoomWallsViewModel(doc, room);
 
                 if (!vm.Walls.Any())
@@ -67,7 +64,6 @@ namespace RevitLevelsPlans.Assignment7.Commands
                     return Result.Succeeded;
                 }
 
-                // 4) Show WPF window modal to Revit main window
                 IntPtr hwnd = data.Application.MainWindowHandle;
                 if (hwnd == IntPtr.Zero)
                     hwnd = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;

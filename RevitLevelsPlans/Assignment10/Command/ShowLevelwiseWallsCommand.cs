@@ -19,15 +19,12 @@ namespace RevitLevelsPlans.Assignment10.Commands
 
             try
             {
-                // Build the ViewModel (group walls by level)
                 var vm = new LevelWallsViewModel(doc);
 
-                // Owner = Revit main window handle (no Autodesk.Windows dependency)
                 IntPtr hwnd = data.Application.MainWindowHandle;
                 if (hwnd == IntPtr.Zero)
                     hwnd = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
 
-                // Open the WPF window
                 var win = new LevelwiseWallsWindow(vm, hwnd);
                 win.ShowDialog();
 

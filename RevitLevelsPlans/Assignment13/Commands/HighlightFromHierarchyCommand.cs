@@ -19,10 +19,8 @@ namespace RevitLevelsPlans.Assignment13.Commands
 
             try
             {
-                // Build the Level → Category hierarchy
                 var vm = new LevelCategoryHierarchyViewModel(doc);
 
-                // Owner = Revit main window (no Autodesk.Windows dependency)
                 IntPtr hwnd = data.Application.MainWindowHandle;
                 if (hwnd == IntPtr.Zero)
                     hwnd = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;

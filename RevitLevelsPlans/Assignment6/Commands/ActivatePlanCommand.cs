@@ -53,7 +53,6 @@ namespace RevitLevelsPlans.Assignment6.Commands
                     return Result.Failed;
                 }
 
-                // ✅ Preferred: set ActiveView directly (immediate change in ExternalCommand)
                 uidoc.ActiveView = selectedView;
 
 

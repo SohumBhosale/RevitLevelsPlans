@@ -9,15 +9,12 @@
 
     <Grid Margin="10">
         <TreeView ItemsSource="{Binding Roots}">
-            <!-- Top: document header node with level children -->
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding LevelName}" FontWeight="SemiBold"/>
-                    <!-- Level node shows Categories -->
                     <HierarchicalDataTemplate.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Categories}">
                             <TextBlock Text="{Binding LevelName}" />
-                            <!-- Leaf: category count rows -->
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Display}" />

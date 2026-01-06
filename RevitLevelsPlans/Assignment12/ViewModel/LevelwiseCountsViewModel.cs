@@ -26,11 +26,9 @@ namespace RevitLevelsPlans.Assignment12.ViewModel
 
         public LevelwiseCountsViewModel(Document doc)
         {
-            // Root node (document title)
             string docTitle = string.IsNullOrWhiteSpace(doc.Title) ? doc.PathName : doc.Title;
             var root = new LevelNodeModel12 { LevelName = docTitle, IsDocumentHeader = true };
 
-            // Collect Levels
             var levels = new FilteredElementCollector(doc)
                 .OfClass(typeof(Level))
                 .Cast<Level>()
