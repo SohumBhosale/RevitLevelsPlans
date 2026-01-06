@@ -1,0 +1,24 @@
+﻿<Window x:Class="RevitLevelsPlans.Assignment13.UI.LevelCategoryHierarchyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hierarchy (Level → Category)"
+        Height="480"
+        Width="620"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <!-- One template for all nodes (type-agnostic); recurses into Children -->
+        <HierarchicalDataTemplate x:Key="NodeTemplate" ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Name}" />
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <TreeView x:Name="HierarchyTree"
+                  ItemsSource="{Binding Roots}"
+                  ItemTemplate="{StaticResource NodeTemplate}"
+                  MouseDoubleClick="OnNodeDoubleClick"
+                  SelectedItemChanged="OnSelectedItemChanged" />
+    </Grid>
+</Window>

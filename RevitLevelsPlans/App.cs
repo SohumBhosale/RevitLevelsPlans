@@ -122,6 +122,23 @@ namespace RevitLevelsPlans
                     "RevitLevelsPlans.Assignment12.Commands.ShowLevelwiseCountsCommand",
                     "Level Wise Element Count"
                 );
+
+                CreatePanelWithButton(
+                   application, TabName, "Assignment 13",
+                   "Assignment 13:\nHighligh Elements",
+                   asmPath,
+                   "RevitLevelsPlans.Assignment13.Commands.HighlightFromHierarchyCommand",
+                   "Highlight selected element"
+               );
+
+                CreatePanelWithButton(
+                   application, TabName, "Assignment 14",
+                   "Assignment 14:\nchange parameter",
+                   asmPath,
+                   "RevitLevelsPlans.Assignment14.Commands.SetDoorSizeCommand",
+                   "Highlight selected element"
+               );
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -142,12 +159,11 @@ namespace RevitLevelsPlans
             string commandClassFullName,
             string tooltip)
         {
-            // Ensure panel exists (reuse if present)
             RibbonPanel panel = EnsurePanel(app, tabName, panelName);
 
             var pbd = new PushButtonData(
-                MakeSafeName("PB_" + panelName), // internal unique name
-                buttonText,                      // visible text
+                MakeSafeName("PB_" + panelName),
+                buttonText,
                 assemblyPath,
                 commandClassFullName
             );

@@ -80,6 +80,12 @@
       <DependentUpon>LevelwiseCountsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assignment12\ViewModel\LevelwiseCountsViewModel.cs" />
+    <Compile Include="Assignment13\Commands\HighlightFromHierarchyCommand.cs" />
+    <Compile Include="Assignment13\Models\HierarchyNode.cs" />
+    <Compile Include="Assignment13\UI\LevelCategoryHierarchyWindow.xaml.cs">
+      <DependentUpon>LevelCategoryHierarchyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment13\ViewModel\LevelCategoryHierarchyViewModel.cs" />
     <Compile Include="Assignment3\Commands\ActivateLevelPlanCommand.cs" />
     <Compile Include="Assignment3\UI\ActivateLevelPlanWindow.xaml.cs">
       <DependentUpon>ActivateLevelPlanWindow.xaml</DependentUpon>
@@ -128,6 +134,11 @@
       <DependentUpon>ModelHierarchyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assignment9\ViewModel\ModelHierarchyViewModel.cs" />
+    <Compile Include="Assignment14\Command\SetDoorSizeCommand.cs" />
+    <Compile Include="Assignment14\UI\DoorSizeWindow.xaml.cs">
+      <DependentUpon>DoorSizeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assignment14\ViewModel\DoorSizeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assignment1\Views\LevelsPlansWindow.xaml.cs">
       <DependentUpon>LevelsPlansWindow.xaml</DependentUpon>
@@ -143,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assignment12\UI\LevelwiseCountsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assignment13\UI\LevelCategoryHierarchyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,12 +197,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assignment14\UI\DoorSizeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assignment13\Commands\" />
-    <Folder Include="Assignment13\Models\" />
-    <Folder Include="Assignment13\UI\" />
-    <Folder Include="Assignment13\ViewModel\" />
+    <Folder Include="Assignment14\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

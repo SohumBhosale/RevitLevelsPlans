@@ -1,18 +1,19 @@
 ﻿
-using Autodesk.Revit.DB;
-using RevitLevelsPlans.Assignment10.Models;
-using RevitLevelsPlans.Assignment12.Models;
-
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace RevitLevelsPlans.Assignment12.ViewModel
-{
-    public class LevelwiseCountsViewModel
-    {
-        public ObservableCollection<LevelNodeModel12> Roots { get; } =
-            new ObservableCollection<LevelNodeModel12>();
+using Autodesk.Revit.DB;
 
+using RevitLevelsPlans.Assignment13.Models;
+
+namespace RevitLevelsPlans.Assignment13.ViewModel
+{
+    public class LevelCategoryHierarchyViewModel
+    {
+        public ObservableCollection<HierarchyNode> Roots { get; } =
+            new ObservableCollection<HierarchyNode>();
+
+        // Categories to display under each level
         private static readonly BuiltInCategory[] TargetCategories =
         {
             BuiltInCategory.OST_Walls,
@@ -24,13 +25,17 @@ namespace RevitLevelsPlans.Assignment12.ViewModel
             BuiltInCategory.OST_Columns
         };
 
-        public LevelwiseCountsViewModel(Document doc)
+        public LevelCategoryHierarchyViewModel(Document doc)
         {
-            // Root node (document title)
+            // Document root
             string docTitle = string.IsNullOrWhiteSpace(doc.Title) ? doc.PathName : doc.Title;
-            var root = new LevelNodeModel12 { LevelName = docTitle, IsDocumentHeader = true };
+            var root = new HierarchyNode
+            {
+                Name = docTitle,
+                NodeType = HierarchyNodeType.Document
+            };
 
-            // Collect Levels
+            // Levels
             var levels = new FilteredElementCollector(doc)
                 .OfClass(typeof(Level))
                 .Cast<Level>()
@@ -38,23 +43,30 @@ namespace RevitLevelsPlans.Assignment12.ViewModel
                 .ThenBy(l => l.Name)
                 .ToList();
 
+            // For each level, add categories (with counts in display name)
             foreach (var level in levels)
             {
-                var levelNode = new LevelNodeModel12
+                var levelNode = new HierarchyNode
                 {
-                    LevelName = level.Name,
+                    Name = level.Name,
+                    NodeType = HierarchyNodeType.Level,
                     LevelId = level.Id
                 };
+
                 foreach (var bic in TargetCategories)
                 {
                     int count = CountElementsOnLevel(doc, level, bic);
-                    var catName = CategoryName(doc, bic);
+                    var catName = doc.Settings.Categories.get_Item(bic)?.Name ?? bic.ToString();
 
-                    levelNode.Categories.Add(new LevelCategoryCountModel
+                    var catNode = new HierarchyNode
                     {
-                        CategoryName = catName,
-                        Count = count
-                    });
+                        Name = $"{catName} ({count})",
+                        NodeType = HierarchyNodeType.Category,
+                        LevelId = level.Id,
+                        Category = bic
+                    };
+
+                    levelNode.Children.Add(catNode);
                 }
 
                 root.Children.Add(levelNode);
@@ -66,17 +78,11 @@ namespace RevitLevelsPlans.Assignment12.ViewModel
         private int CountElementsOnLevel(Document doc, Level level, BuiltInCategory bic)
         {
             var levelFilter = new ElementLevelFilter(level.Id);
-
             return new FilteredElementCollector(doc)
                 .OfCategory(bic)
                 .WhereElementIsNotElementType()
                 .WherePasses(levelFilter)
                 .GetElementCount();
-        }
-        private string CategoryName(Document doc, BuiltInCategory bic)
-        {
-            var cat = doc.Settings.Categories.get_Item(bic);
-            return cat?.Name ?? bic.ToString();
         }
     }
 }
